@@ -1,48 +1,51 @@
-import React from "react";
-import SearchIcon from '@mui/icons-material/Search';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import NetflixLogo from '../../assets/image/logo.png'
-import './header.css'
+import React, { useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import NetflixLogo from "../../assets/image/logo.png";
+import "./header.css";
+
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-   
+    <div className="header_outer_container">
+      <div className="header_container">
+        {/* Left section */}
+        <div className="header_left">
+          <img src={NetflixLogo} alt="Netflix Logo" className="netflix_logo" />
 
-   <div className="header_outer_container">
-      <div className="header-container">
-        <div className="header-left">
-          <ul>
-            <li><img src={NetflixLogo} alt="Netflix Logo" className="netflix-logo"/></li> 
+          {/* Hamburger button (only shows on mobile) */}
+          <button className="menu_icon" onClick={toggleMenu}>
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
 
-            <li>Netflix</li>
+          <ul className={`nav_links ${menuOpen ? "active" : ""}`}>
             <li>Home</li>
-            <li>TvShowse</li>
-            <li> Movies</li>
-            <li>Latest</li>c
-            <li>Mylist</li>
-            <li>Browse by Languge</li>
+            <li>TV Shows</li>
+            <li>Movies</li>
+            <li>Latest</li>
+            <li>My List</li>
+            <li>Browse by Language</li>
           </ul>
         </div>
-        <div className="header-right">
-          <ul> 
-             <li>
-              <SearchIcon />
-            </li>
-            <li> <NotificationsIcon /></li>
-             
-            
-            <li>
-              <AccountBoxIcon />
-       </li>
-            <li>
-              <ArrowDropDownIcon />
-            </li> 
-           </ul>
+
+        {/* Right section */}
+        <div className="header_right">
+          <SearchIcon className="icon" />
+          <NotificationsIcon className="icon" />
+          <AccountBoxIcon className="icon" />
+          <ArrowDropDownIcon className="icon" />
         </div>
       </div>
-       </div>
-
+    </div>
   );
 };
 
